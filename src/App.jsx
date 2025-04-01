@@ -26,7 +26,7 @@ export const App = () => {
     <Container className="mt-4">
       <h2>Ajouter une tâche</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" controlId="name">
           <Form.Label>Nom</Form.Label>
           <Form.Control
             type="text"
@@ -37,7 +37,7 @@ export const App = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" controlId="dueDate">
           <Form.Label>Date Due</Form.Label>
           <Form.Control
             type="date"
@@ -48,7 +48,7 @@ export const App = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" controlId="priority">
           <Form.Label>Priorité</Form.Label>
           <Form.Select
             name="priority"
@@ -61,7 +61,7 @@ export const App = () => {
           </Form.Select>
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" controlId="isCompleted">
           <Form.Check
             type="checkbox"
             label="Tâche complétée"
