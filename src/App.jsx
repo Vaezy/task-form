@@ -13,7 +13,10 @@ const schema = yup.object().shape({
     .required("Le nom est requis"),
   dueDate: yup
     .string()
-    .matches(/^\d{2}\/\d{2}\/\d{4}$/, "Le format doit être jj/mm/AAAA")
+    .matches(
+      /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/,
+      "Le format doit être jj/mm/AAAA avec des valeurs correctes"
+    )
     .test(
       "is-valid-date",
       "La date ne peut pas être antérieure à aujourd'hui",
@@ -21,6 +24,7 @@ const schema = yup.object().shape({
         if (!value) return false;
         const [day, month, year] = value.split("/").map(Number);
         const inputDate = new Date(year, month - 1, day);
+        inputDate.setHours(0, 0, 0, 0);
         return inputDate >= today;
       }
     )
@@ -28,7 +32,7 @@ const schema = yup.object().shape({
   priority: yup
     .string()
     .oneOf(["Basse", "Moyenne", "Élevée"], "Choisissez une priorité valide"),
-  isCompleted: yup.boolean().required(),
+  isCompleted: yup.boolean(),
 });
 
 export const App = () => {
